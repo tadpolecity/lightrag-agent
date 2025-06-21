@@ -47,13 +47,13 @@ def display_message_part(part):
     # text
     elif part.part_kind == 'text':
         with st.chat_message("assistant"):
-            st.markdown(part.content)             
+            st.markdown(part.content)
 
 async def run_agent_with_streaming(user_input):
     async with agent.run_stream(
         user_input, deps=st.session_state.agent_deps, message_history=st.session_state.messages
     ) as result:
-        async for message in result.stream_text(delta=True):  
+        async for message in result.stream_text(delta=True):
             yield message
 
     # Add the new messages to the chat history (including tool calls and responses)
@@ -73,7 +73,7 @@ async def main():
     if "messages" not in st.session_state:
         st.session_state.messages = []
     if "agent_deps" not in st.session_state:
-        st.session_state.agent_deps = await get_agent_deps()  
+        st.session_state.agent_deps = await get_agent_deps()
 
     # Display all messages from the conversation so far
     # Each message is either a ModelRequest or ModelResponse.
@@ -96,13 +96,13 @@ async def main():
             # Create a placeholder for the streaming text
             message_placeholder = st.empty()
             full_response = ""
-            
+
             # Properly consume the async generator with async for
             generator = run_agent_with_streaming(user_input)
             async for message in generator:
                 full_response += message
                 message_placeholder.markdown(full_response + "▌")
-            
+
             # Final response without the cursor
             message_placeholder.markdown(full_response)
 
