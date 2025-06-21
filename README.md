@@ -1,5 +1,7 @@
 # LightRAG vs BasicRAG: Comparing RAG Implementations
 
+> **Disclaimer**: This code is copied from [https://github.com/coleam00/ottomator-agents/tree/main/light-rag-agent](https://github.com/coleam00/ottomator-agents/tree/main/light-rag-agent). The original implementation and all credit belongs to the original authors. This repository serves as a local copy for educational and comparison purposes.
+
 This project demonstrates two different implementations of Retrieval-Augmented Generation (RAG) for answering questions about Pydantic AI using its documentation:
 
 1. **BasicRAG**: A traditional RAG implementation using ChromaDB for vector storage and similarity search
